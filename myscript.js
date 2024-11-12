@@ -9,6 +9,7 @@ function getComputerChoice() {
     } else {
         choice = "scissor"
     }
+    console.log(`Computer chose: ${choice}`);
     return choice;
 }
 
@@ -28,6 +29,7 @@ function getHumanChoice() {
     } 
     // Print to console to comfirm the user's answer
     else {
+        console.log(`User chose: ${answer}`);
         return answer;
     }
 }
@@ -41,13 +43,16 @@ function playRound(human, computer) {
     // if the human and computer has the same choice
     if (human === computer) {
         console.log(`Draws!`)
+        return null;
     } 
     // User wins
     else if ( (human === "rock" && computer === "scissor" ) || (human === "paper" && computer === "rock") || 
               (human === "scissor" && computer === "paper") ) {
         console.log(`You win! ${human} beats ${computer}`);
+        return true;
     } else {
         console.log(`You lose! ${computer} beats ${human}`);
+        return false;
     }
 }
 
@@ -57,8 +62,29 @@ let humanScore = 0;
 let computerScore = 0;
 
 
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
-console.log(`${humanSelection} and ${computerSelection}`)
+// Create a loop before we have a winner
+while (humanScore < 5 || computerScore < 5) {
 
-playRound(humanSelection, computerSelection);
+    // Get choices for human and computer
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
+    
+    // Get the result 
+    let result = playRound(humanSelection, computerSelection);
+
+    // Check who wins this round
+    if (result) {
+        humanScore++;
+    } else if (!result) {
+        computerScore++;
+    } 
+    console.log(`Score: Human ${humanScore} and Computer${computerScore}`);
+}
+
+
+// To announce the winner 
+if (humanScore > computerScore) {
+    console.log(`Congrats you win the game!`);
+} else {
+    console.log(`You lost :( the game`);
+}
