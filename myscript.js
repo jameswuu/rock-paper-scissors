@@ -1,6 +1,6 @@
 // Function to generate a random choice
 function getComputerChoice() {
-    let choices = ["rock", "paper", "scissors"]
+    let choices = ["rock", "paper", "scissor"]
     let choice = choices[Math.floor(Math.random() * choices.length)]
     console.log(`Computer chose: ${choice}`);
     return choice;
