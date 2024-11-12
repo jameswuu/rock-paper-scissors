@@ -1,38 +1,30 @@
 // Function to generate a random choice
 function getComputerChoice() {
-    let num = Math.random();
-    let choice = null;
-    if (num >= 0 && num <=0.33) {
-        choice = "rock";
-    } else if (num > 0.33 && num<=0.66) {
-        choice = "paper";
-    } else {
-        choice = "scissor"
-    }
+    let choices = ["rock", "paper", "scissors"]
+    let choice = choices[Math.floor(Math.random() * choices.length)]
     console.log(`Computer chose: ${choice}`);
-    console.log(`Random number: ${num}`);
     return choice;
 }
 
 
 // Prompt user for input
 function getHumanChoice() {
-    let answer = prompt("What's your choice: Rock, Paper, Scissor?").toLowerCase();
+    let answer;
     let selection = ["rock", "paper", "scissor"];
-    
-    // To ensure the input is not empty 
-    if (!answer){
-        return console.log(`Input cannot be empty`);
-    } 
-    // To valid the answer with the selection list
-    else if (!selection.includes(answer)) {
-        return console.log(`Invalid Input: ${answer}`);
-    } 
+    do {
+        answer = prompt("What's your choice: Rock, Paper, Scissors?").toLowerCase();
+        
+        // To valid the answer with the selection list
+        if (!answer){
+            console.log(`Input cannot be empty`);
+        } else if (!selection.includes(answer)) {
+            console.log(`Invalid Input: ${answer}`);
+        } 
+    } while ( !answer || !selection.includes(answer) );
+
     // Print to console to comfirm the user's answer
-    else {
-        console.log(`User chose: ${answer}`);
-        return answer;
-    }
+    console.log(`User chose: ${answer}`);
+    return answer;
 }
 
 
