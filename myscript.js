@@ -10,6 +10,7 @@ function getComputerChoice() {
         choice = "scissor"
     }
     console.log(`Computer chose: ${choice}`);
+    console.log(`Random number: ${num}`);
     return choice;
 }
 
@@ -60,10 +61,12 @@ function playRound(human, computer) {
 // Initalize the score for player and computer
 let humanScore = 0;
 let computerScore = 0;
+let counter = 1;
 
 
 // Create a loop before we have a winner
-while (humanScore < 5 || computerScore < 5) {
+while (true) {
+    console.log(`Round ${counter}`);
 
     // Get choices for human and computer
     let humanSelection = getHumanChoice();
@@ -73,12 +76,20 @@ while (humanScore < 5 || computerScore < 5) {
     let result = playRound(humanSelection, computerSelection);
 
     // Check who wins this round
-    if (result) {
+    if (result === true) {
         humanScore++;
-    } else if (!result) {
+    } else if (result === false) {
         computerScore++;
-    } 
-    console.log(`Score: Human ${humanScore} and Computer${computerScore}`);
+    }
+    
+    console.log(`Human: ${humanScore} Computer: ${computerScore}`);
+    
+    // To check if we have a winner
+    if (humanScore >= 5 || computerScore >= 5) {
+        break;
+    }
+    
+    counter++;
 }
 
 
@@ -86,5 +97,5 @@ while (humanScore < 5 || computerScore < 5) {
 if (humanScore > computerScore) {
     console.log(`Congrats you win the game!`);
 } else {
-    console.log(`You lost :( the game`);
+    console.log(`You lost the game`);
 }
