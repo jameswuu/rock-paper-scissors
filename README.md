@@ -14,4 +14,4 @@ The purpose of this project is to familiarize myself with JavaScript, specifical
 8. Initialize the player and computer scores.
     - Both scores shall be 0 at the beginning.
 9. Increment the score after a player wins a round.
-10. Declare the winner once a player reaches a score of 5.
+10. Declare the winner once a player reaches a score of 5!
