@@ -9,22 +9,24 @@ function getComputerChoice() {
 
 // Prompt user for input
 function getHumanChoice() {
-    let answer;
-    let selection = ["rock", "paper", "scissor"];
-    do {
-        answer = prompt("What's your choice: Rock, Paper, Scissors?").toLowerCase();
-        
-        // To valid the answer with the selection list
-        if (!answer){
-            console.log(`Input cannot be empty`);
-        } else if (!selection.includes(answer)) {
-            console.log(`Invalid Input: ${answer}`);
-        } 
-    } while ( !answer || !selection.includes(answer) );
+    let humanchoice = document.querySelector("#choice");
+    humanchoice.addEventListener('click', (button) => {
+        let target = button.target;
 
-    // Print to console to comfirm the user's answer
-    console.log(`User chose: ${answer}`);
-    return answer;
+        switch(target.id) {
+            case 'rock':
+                console.log('Rock was clicked');
+                break;
+            case 'paper':
+                console.log('Paper was clicked');
+                break;
+            case 'scissor':
+                console.log('Scissor was clicked');
+                break;
+        }
+        console.log(`User chose: ${target}`);
+        return target;
+    });
 }
 
 
