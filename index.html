@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="myscript.js"></script>
+    <script src="myscript.js" defer></script>
     <title>Rock Paper Scissor</title>
 </head>
 <body>
-    
+    <div id="choice">
+        <button id="rock">Rock</buton>
+        <button id="paper">Paper</buton>
+        <button id="scissor">Scissor</buton>
+    </div>
+
+    <div id="score">
+        <table>
+            <thead>
+                <th>Human</th>
+                <th>Computer</th>
+            </thead>
+            <tbody>
+                <td id="human-score">0</td>
+                <td id="computer-score">0</td>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>

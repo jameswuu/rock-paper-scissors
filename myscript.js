@@ -1,32 +1,49 @@
+// Create element to select buttons
+const buttons = document.querySelectorAll("button");
+
+// Add Event listener when button is clicked
+buttons.forEach((button)=> {
+    button.addEventListener("click", () => {
+        // Print User's Selection
+        let human = button.id;
+        let comment = querySelector("#comment");
+        console.log(`User chose: ${human}`);
+
+        // Get computer choice
+        let computer = computerSelection();
+
+        // Gets winner of the round
+        let result = playRound(human, computer);
+
+        // Updates the counter
+        if (result) {
+            // If human wins 
+            let humanScore = querySelector("#human-score");
+            humanScore.innerHTML = number(humanScore.innerHTML) + 1;
+            comment.innerHTML = "Human wins this round";
+
+        } else if (!result) {
+            // If computer wins 
+            let computerScore = querySelector("#computer-score");
+            computerScore.innerHTML = number(computerScore.innerHTML) + 1;
+            comment.innerHTML = "Computer wins this round";
+        } else {
+            // If Draws
+            comment.innerHTML = "Draws";
+        }
+
+        // Display winner.....
+
+    })
+})
+
+
 // Function to generate a random choice
-function getComputerChoice() {
+function computerSelection() {
     let choices = ["rock", "paper", "scissor"]
     let choice = choices[Math.floor(Math.random() * choices.length)]
     console.log(`Computer chose: ${choice}`);
     return choice;
-}
-
-
-// Prompt user for input
-function getHumanChoice() {
-    let humanchoice = document.querySelector("#choice");
-    humanchoice.addEventListener('click', (button) => {
-        let target = button.target;
-
-        switch(target.id) {
-            case 'rock':
-                console.log('Rock was clicked');
-                break;
-            case 'paper':
-                console.log('Paper was clicked');
-                break;
-            case 'scissor':
-                console.log('Scissor was clicked');
-                break;
-        }
-        console.log(`User chose: ${target}`);
-        return target;
-    });
 }
 
 
@@ -49,47 +66,4 @@ function playRound(human, computer) {
         console.log(`You lose! ${computer} beats ${human}`);
         return false;
     }
-}
-
-
-// Initalize the score for player and computer
-let humanScore = 0;
-let computerScore = 0;
-let counter = 1;
-
-
-// Create a loop before we have a winner
-while (true) {
-    console.log(`Round ${counter}`);
-
-    // Get choices for human and computer
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
-    
-    // Get the result 
-    let result = playRound(humanSelection, computerSelection);
-
-    // Check who wins this round
-    if (result === true) {
-        humanScore++;
-    } else if (result === false) {
-        computerScore++;
-    }
-    
-    console.log(`Human: ${humanScore} Computer: ${computerScore}`);
-    
-    // To check if we have a winner
-    if (humanScore >= 5 || computerScore >= 5) {
-        break;
-    }
-    
-    counter++;
-}
-
-
-// To announce the winner 
-if (humanScore > computerScore) {
-    console.log(`Congrats you win the game!`);
-} else {
-    console.log(`You lost the game`);
 }
