@@ -1,12 +1,15 @@
 // Create element to select buttons
 const buttons = document.querySelectorAll("button");
+let humanScore = document.querySelector("#human-score");
+let computerScore = document.querySelector("#computer-score");
+
 
 // Add Event listener when button is clicked
 buttons.forEach((button)=> {
     button.addEventListener("click", () => {
         // Print User's Selection
         let human = button.id;
-        let comment = querySelector("#comment");
+        let comment = document.querySelector("#comment");
         console.log(`User chose: ${human}`);
 
         // Get computer choice
@@ -16,24 +19,32 @@ buttons.forEach((button)=> {
         let result = playRound(human, computer);
 
         // Updates the counter
-        if (result) {
+        if (result === true) {
             // If human wins 
-            let humanScore = querySelector("#human-score");
-            humanScore.innerHTML = number(humanScore.innerHTML) + 1;
+            humanScore.innerHTML = parseInt(humanScore.innerHTML) + 1;
             comment.innerHTML = "Human wins this round";
 
-        } else if (!result) {
+        } else if (result === false) {
             // If computer wins 
-            let computerScore = querySelector("#computer-score");
-            computerScore.innerHTML = number(computerScore.innerHTML) + 1;
+            computerScore.innerHTML = parseInt(computerScore.innerHTML) + 1;
             comment.innerHTML = "Computer wins this round";
-        } else {
+        } else if (result === null) {
             // If Draws
             comment.innerHTML = "Draws";
         }
 
-        // Display winner.....
-
+        // Display winner
+        if (parseInt(humanScore.innerHTML) === 5) {
+            comment.innerHTML = "You won the game!";
+            for (const button of buttons) {
+                button.disabled = true;
+            }
+        } else if (parseInt(computerScore.innerHTML) === 5) {
+            comment.innerHTML = "You lost the game!";
+            for (const button of buttons) {
+                button.disabled = true;
+            }
+        }
     })
 })
 
